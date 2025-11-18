@@ -7,10 +7,7 @@ using namespace std;
 
 KMeans::KMeans(int k) : k(k) {}
 
-/*
-    loads points from a text file
-    skips empty lines and reads all numbers from each line
-*/
+// loads points from a text file
 void KMeans::loadData(const string& filename) {
     ifstream file(filename);
 
@@ -21,17 +18,15 @@ void KMeans::loadData(const string& filename) {
 
     string line;
     while (getline(file, line)) {
-
-        
-        if (line.find_first_not_of(" \t") == string::npos) // skip empty or space-only lines
+        if (line.find_first_not_of(" \t") == string::npos)  // skip empty or space-only lines
             continue;
 
         stringstream ss(line);
         double number;
         Point p;
 
-        
-        while (ss >> number) {     // read numbers from this line
+     
+        while (ss >> number) {      // read numbers from this line
             p.coords.push_back(number);
         }
 
@@ -44,14 +39,25 @@ void KMeans::loadData(const string& filename) {
 }
 
 void KMeans::run() {
-    // later
 }
+
+
 
 void KMeans::saveResults(const string& filename) {
-    // later
+    ofstream out(filename);
+
+    if (!out.is_open()) {
+        cout << "Can't open output file: " << filename << "\n";
+        return;
+    }
+    out << "Number of points: " << points.size() << "\n";
+    out << "Number of clusters: " << k << "\n";
 }
 
-  // printed when no arguments are given
+
+
+
+// printed when no arguments are given
 void printManual() {
     cout << "Simple K-Means Program\n\n";
     cout << "Usage:\n";
