@@ -3,9 +3,14 @@
 #include "kmeans.h"
 using namespace std;
 
-    // reads arguments and loads the data
-int main(int argc, char* argv[]) {
 
+void printManual() {
+    cout << "Simple K-Means Program\n\n";
+    cout << "Usage:\n Project_1.exe -i Iris.csv -o out.txt -k 3\n\n";
+}
+
+
+int main(int argc, char* argv[]) {
     if (argc == 1) {
         printManual();
         return 0;
@@ -16,7 +21,6 @@ int main(int argc, char* argv[]) {
 
     for (int i = 1; i < argc; i++) {
         string arg = argv[i];
-
         if (arg == "-i" && i + 1 < argc) {
             inputFile = argv[++i];
         }
@@ -39,12 +43,9 @@ int main(int argc, char* argv[]) {
     }
 
     KMeans model(k);
-
     model.loadData(inputFile);
-
     model.run();
     model.saveResults(outputFile);
 
     return 0;
 }
-

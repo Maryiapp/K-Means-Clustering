@@ -2,14 +2,10 @@
 #define POINT_H
 
 #include <vector>
-using namespace std;
 
-// One input line = one point
 struct Point {
-    vector<double> coords;  // coordinates
-    int cluster = -1;       // cluster index
+    std::vector<double> coords; // coordinates
+    int cluster = -1;           // cluster
 };
 
 #endif
-
-
